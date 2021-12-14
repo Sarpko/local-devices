@@ -103,7 +103,7 @@ function pingServer (address) {
  */
 function arpAll (skipNameResolution = false) {
   const isWindows = process.platform.includes('win32')
-  const cmd = (skipNameResolution && !isWindows) ? 'arp -an' : 'arp -a'
+  const cmd = (skipNameResolution && !isWindows) ? 'arp -an' : 'ip n'
   return cp.exec(cmd, options).then(parseAll)
 }
 
