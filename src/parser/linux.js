@@ -7,14 +7,16 @@ module.exports = function parseLinux (row, servers, parseOne) {
   var result = {}
 
   // Ignore unresolved hosts.
-  if (row === '' || row.indexOf('incomplete') >= 0) {
+  if (row === '' || row.indexOf('INCOMPLETE') >= 0) {
     return
   }
 
   var chunks = row.split(' ').filter(Boolean)
   if (parseOne) {
     result = prepareOne(chunks)
+    console.log(chunks)
   } else {
+    console.log(chunks)
     result = prepareAll(chunks)
   }
 
@@ -36,8 +38,7 @@ function prepareOne (chunks) {
 
 function prepareAll (chunks) {
   return {
-    name: chunks[0],
-    ip: chunks[1].match(/\((.*)\)/)[1],
-    mac: chunks[3]
+    ip: chunks[0],
+    mac: chunks[4]
   }
 }
